@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import styles from './comments.styl';
-import data from './../data/data.js';
 
-class CommentBox extends React.Component {
+export default class CommentBox extends React.Component {
   render() {
     return (
       <div className="commentBox">
@@ -45,7 +43,7 @@ class Comment extends React.Component {
   render() {
     return (
       <div className="comment">
-        <h2 className="commentAuthor">
+        <h2 className={styles.commentAuthor}>
           {this.props.author}
         </h2>
         {this.props.children}
@@ -53,8 +51,3 @@ class Comment extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <CommentBox data={data} />, 
-  document.getElementById('comments')
-);

@@ -1,0 +1,23 @@
+body {
+  background: #ddd;
+}
+h2 {
+  color: #fff;
+}
+._37VUG {
+  color: #f00;
+  -webkit-writing-mode: vertical-lr;
+      -ms-writing-mode: tb-lr;
+          writing-mode: vertical-lr;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-decoration-break: slice;
+          box-decoration-break: slice;
+  -webkit-clip-path: circle(30px at 35px 35px);
+          clip-path: circle(30px at 35px 35px);
+  text-stroke: 2px #f00;
+  -webkit-font-kerning: normal;
+          font-kerning: normal;
+}

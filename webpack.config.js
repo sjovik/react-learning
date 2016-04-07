@@ -1,49 +1,94 @@
 const path = require('path');
 const _ = require('lodash');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'build')
-}
+};
+
+process.env.BABEL_ENV = TARGET;
+
 
 const common = {
-  entry: PATHS.app,
-  output: { path: PATHS.build, filename: 'bundle.js' },
+  entry: {
+    app: PATHS.app
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.styl']
+  },
+  output: { 
+    path: PATHS.build, 
+    filename: 'bundle.js' 
+  },
   module: {
     loaders: [
       {
-        test: /.jsx?$/,
+        test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        include: PATHS.app,
         query: {
-          presets: ['es2015', 'react']
+          cacheDirectory: true
         } 
       },
       {
-        test: /\.styl$/,
-        loaders: ['style', 'css', 'stylus'],
-        include: PATHS.app
+        test: /\.css$/,
+        loader: 'postcss-loader',
+        include: PATHS.app,
       }
     ]
   },
+  postcss: function () {
+    return [autoprefixer]
+  } 
 };
 
 if (TARGET === 'start' || !TARGET) {
-  module.exports = _.assign(common, {
+  const devSettings = _.merge(common, {
     devServer: {
       contentBase: PATHS.build,
       historyApiFallback: true,
+      hot: true,
+      inline: true,
       progress: true,
       stats: 'errors-only',
-      colors: true
-    }
+      colors: true,
+      host: process.env.HOST,
+      port: process.env.PORT
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+    ],
   });
+
+  devSettings.module.loaders.push({
+    test: /\.styl$/,
+    loaders: ['style','css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]','postcss', 'stylus'],
+    include: PATHS.app
+  });
+
+  module.exports = devSettings;
 }
 
 if (TARGET === 'build') {
-  module.exports = common;
+  const buildSettings = _.merge(common, {
+    plugins: [
+      new ExtractTextPlugin('style.css'),
+      // new webpack.optimize.UglifyJsPlugin()
+    ],
+  });
+
+  buildSettings.module.loaders.push({
+    test: /\.styl$/,
+    loader: ExtractTextPlugin.extract(
+      'style-loader','css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader!stylus-loader'),
+    include: PATHS.app
+  });
+
+  module.exports = buildSettings;
 }
 
 
