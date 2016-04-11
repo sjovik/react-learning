@@ -29,14 +29,11 @@ export default class App extends React.Component {
   }
 
   openArticle(id) {
-    this.setState({ loading: true });
-    setTimeout(function() {
+    this.setState({ loading: true, selectedArticle: NO_ARTICLE });
 
     $.getJSON(ARTICLE_URL + id + API_KEY, (data) => {
       this.setState({ selectedArticle: data, loading: false });
     });
-      
-    }.bind(this), 300);
   }
 
   emptyArticle() {

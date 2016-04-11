@@ -14,9 +14,12 @@ export default ({articles, selected, onOpen, onEmpty}) => {
             onClick={onEmpty} />
         </li>
         {articles.map(article => 
-          <li className={(selected && selected._id === article._id) ? styles.selected : styles.menuListItem} key={article._id}>
+          <li className={(selected && selected._id === article._id) ? 
+            styles.menuListItem + ' ' + styles.selected : 
+            styles.menuListItem} 
+            key={article._id}>
             <Button 
-              title={selected ? selected.title : 'hello'}  
+              title={article.title}  
               onClick={onOpen.bind(null, article._id)} />
           </li>
         )}

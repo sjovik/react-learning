@@ -7,9 +7,12 @@ import Button from './button';
 export default class Article extends React.Component {
   render() {
     const article = this.props.article;
+
     return (
       <div className={styles.contentBox}>
-        <p className={styles.articleText}>{this.props.loading ? 'loading...' : article.text}</p>
+        <p>Författare: <span className={styles.articleText}><a href={"mailto:" + article.authorEmail}>{article.author}</a></span></p>
+        <p>Datum: <span className={styles.articleText}>{article.date}</span></p>
+        <p className={styles.articleText} dangerouslySetInnerHTML={{__html: this.props.loading ? 'loading... ' : article.text}}></p>
         {article._id ? this.renderDelete() : null}
       </div>
     );
