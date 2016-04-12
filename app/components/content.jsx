@@ -14,18 +14,18 @@ export default class Article extends React.Component {
         <p>Datum: <span className={styles.articleText}>{article.date}</span></p>
         {article.imageURL ? this.renderImage() : null}
         <p className={styles.articleText}>{this.props.loading ? 'loading... ' : article.text}</p>
-        {article.id ? this.renderDelete() : null}
+        {article.id || article.id === 0 ? this.renderDelete() : null}
       </div>
     );
   
   }
 
   renderImage() {
-    return <img src={this.props.article.articleURL} />
+    return <img src={this.props.article.imageURL} />
   }
 
   renderDelete() {
-    return <Button title="Delete" onClick={this.props.onDelete.bind(null, this.props.article.id)} />
+    return <Button title="Delete" small={true} onClick={this.props.onDelete.bind(null, this.props.article.id)} />
   }
 
 }
