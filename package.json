@@ -10,7 +10,8 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "set NODE_ENV=production&& webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsondb": "json-server --watch ./node_modules/jsondb/db.json -c ./node_modules/jsondb/json-server.json --static ./node_modules/jsondb/public"
   },
   "author": "Johannes Lilja",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^2.2.3",
+    "jsondb": "git://github.com/sjovik/jsondb.git",
     "postcss-loader": "^0.8.2",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.2",

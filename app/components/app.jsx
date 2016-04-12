@@ -42,8 +42,10 @@ export default class App extends React.Component {
   deleteArticle(id) {
     this.setState({articles: this.state.articles.filter(article => article.id !== id)});
 
-    $.ajax(ARTICLES_URL + id, {
-        type: 'DELETE',
+    // Works with DELETE but actually deletes from fake API, so using GET to be able to 
+    // reload and get them back.
+    $.ajax(ARTICLE_URL + id, {
+        type: 'GET',
         success: () => {
           this.emptyArticle();
         }
