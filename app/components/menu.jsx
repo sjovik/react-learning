@@ -14,13 +14,13 @@ export default ({articles, selected, onOpen, onEmpty}) => {
             onClick={onEmpty} />
         </li>
         {articles.map(article => 
-          <li className={(selected && selected._id === article._id) ? 
+          <li className={(selected && selected.id === article.id) ? 
             styles.menuListItem + ' ' + styles.selected : 
             styles.menuListItem} 
-            key={article._id}>
+            key={article.id}>
             <Button 
               title={article.title}  
-              onClick={onOpen.bind(null, article._id)} />
+              onClick={onOpen.bind(null, article.id)} />
           </li>
         )}
       </ul>

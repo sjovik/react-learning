@@ -8,9 +8,8 @@ import $ from 'jquery';
 import Content from './content.jsx';
 import Menu from './menu.jsx';
 
-const ARTICLES_URL = 'https://iths.bbweb.se/articles';
-const ARTICLE_URL = 'https://iths.bbweb.se/articles/';
-const API_KEY = '?key=337c5d1f-15b6-4da0-b06d-ba5dd6c5893f';
+const ARTICLES_URL = 'http://localhost:3030/articles';
+const ARTICLE_URL = 'http://localhost:3030/articles/';
 const NO_ARTICLE = { text: 'Välj en artikel från menyn.' };
 
 export default class App extends React.Component {
@@ -31,7 +30,7 @@ export default class App extends React.Component {
   openArticle(id) {
     this.setState({ loading: true, selectedArticle: NO_ARTICLE });
 
-    $.getJSON(ARTICLE_URL + id + API_KEY, (data) => {
+    $.getJSON(ARTICLE_URL + id, (data) => {
       this.setState({ selectedArticle: data, loading: false });
     });
   }
@@ -41,9 +40,9 @@ export default class App extends React.Component {
   }
 
   deleteArticle(id) {
-    this.setState({articles: this.state.articles.filter(article => article._id !== id)});
+    this.setState({articles: this.state.articles.filter(article => article.id !== id)});
 
-    $.ajax('https://iths.bbweb.se/articles/' + id + API_KEY, {
+    $.ajax(ARTICLES_URL + id, {
         type: 'DELETE',
         success: () => {
           this.emptyArticle();
@@ -52,7 +51,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    $.getJSON('https://iths.bbweb.se/articles?key=337c5d1f-15b6-4da0-b06d-ba5dd6c5893f', (data) => {
+    $.getJSON(ARTICLES_URL, (data) => {
       this.setState({ articles: data });
     });
   }
