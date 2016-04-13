@@ -15,16 +15,26 @@ export default class App extends React.Component {
   render() {
     return (
       <div className={styles.bodyContainer}>
-        <AltContainer
-          stores={[ArticleStore]}
-          inject={{
-            articles: () => ArticleStore.getState().articles,
-            selected: () => ArticleStore.getState().selectedArticle,
-            loading: () => ArticleStore.getState().loading
-          }}>
-          <Menu onOpen={this.openArticle} />
-          <Content onDelete={this.deleteArticle} />
-        </AltContainer>
+        <div className={styles.menuContainer}>
+          <AltContainer
+            stores={[ArticleStore]}
+            inject={{
+              articles: () => ArticleStore.getState().articles,
+              selected: () => ArticleStore.getState().selectedArticle
+            }}>
+            <Menu onOpen={this.openArticle} />
+          </AltContainer>
+        </div>
+        <div className={styles.contentContainer}>
+          <AltContainer
+            stores={[ArticleStore]}
+            inject={{
+              selected: () => ArticleStore.getState().selectedArticle,
+              loading: () => ArticleStore.getState().loading
+            }}>
+            <Content onDelete={this.deleteArticle} />
+          </AltContainer>
+        </div>
       </div>
     );
   }

@@ -1,14 +1,15 @@
 @import '../frame/theme.styl'
 
+padding = 20px
+
 .contentBox
-  float left
-  flex-grow 1
+  width 'calc(100% - %s)' % (padding * 2 + 8)
   height contentHeight
   border border
-  padding 20px
+  padding padding
   
   p
-    font-family font-body
+    font-family fontBody
     max-width 300px
   
   span

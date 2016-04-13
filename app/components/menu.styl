@@ -1,12 +1,12 @@
 @import './../frame/theme.styl'
 
+padding = 20px
+
 .menuBox
+  width 'calc(100% - %s)' % ((padding * 2) + (borderWidth * 2))
   height contentHeight
-  width 150px
   border border
-  float left
-  padding 20px
-  margin-right 25px
+  padding padding
   
 .menuListItem
   list-style-type none
