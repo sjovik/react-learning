@@ -21,6 +21,7 @@
     "react-dom": "^15.0.0"
   },
   "devDependencies": {
+    "alt-container": "^1.0.2",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",

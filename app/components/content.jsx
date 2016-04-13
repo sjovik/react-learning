@@ -6,7 +6,7 @@ import Button from './button';
 
 export default class Article extends React.Component {
   render() {
-    const article = this.props.article;
+    const article = this.props.selected;
 
     return (
       <div className={styles.contentBox}>
@@ -17,15 +17,14 @@ export default class Article extends React.Component {
         {article.id || article.id === 0 ? this.renderDelete() : null}
       </div>
     );
-  
   }
 
   renderImage() {
-    return <img src={this.props.article.imageURL} />
+    return <img src={this.props.selected.imageURL} />
   }
 
   renderDelete() {
-    return <Button title="Delete" small={true} onClick={this.props.onDelete.bind(null, this.props.article.id)} />
+    return <Button title="Delete" small={true} onClick={this.props.onDelete.bind(null, this.props.selected.id)} />
   }
 
 }

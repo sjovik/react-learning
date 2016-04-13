@@ -51,7 +51,6 @@ class ArticleStore {
         selectedArticle: NO_ARTICLE
       });
     });
-
   }
 
   getArticle(id) {
