@@ -4,15 +4,10 @@ import React from 'react';
 
 import Button from './button';
 
-export default ({articles, selected, onOpen, onEmpty}) => {
+export default ({articles, selected, onOpen}) => {
   return (
     <div className={styles.menuBox}>
       <ul className={styles.menuList}>
-        <li className={styles.menuListItem}>
-          <Button 
-            title='No article'
-            onClick={onEmpty} />
-        </li>
         {articles.map(article => 
           <li className={(selected && selected.id === article.id) ? 
             styles.menuListItem + ' ' + styles.selected : 

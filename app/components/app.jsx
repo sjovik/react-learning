@@ -16,17 +16,11 @@ export default class App extends React.Component {
 
     this.state = ArticleStore.getState();
 
-    this.openArticle = this.openArticle.bind(this);
-    this.emptyArticle = this.emptyArticle.bind(this);
     this.storeChanged = this.storeChanged.bind(this);
   }
 
   openArticle(id) {
     ArticleActions.getArticle(id);
-  }
-
-  emptyArticle() {
-    this.setState({ selectedArticle: NO_ARTICLE });
   }
 
   deleteArticle(id) {
@@ -51,10 +45,9 @@ export default class App extends React.Component {
         <Menu 
           articles={this.state.articles} 
           selected={this.state.selectedArticle}
-          onOpen={this.openArticle} 
-          onEmpty={this.emptyArticle} />
+          onOpen={this.openArticle} />
         <Content 
-          article={this.state.selectedArticle} 
+          article={this.state.selectedArticle}
           onDelete={this.deleteArticle}
           loading={this.state.loading} />
       </div>
