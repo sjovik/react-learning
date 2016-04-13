@@ -3,36 +3,26 @@ import styles from './app.styl';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+
+import ArticleActions from '../actions/ArticleActions';
+import ArticleStore from '../stores/ArticleStore';
 
 import Content from './content.jsx';
 import Menu from './menu.jsx';
 
-const ARTICLES_URL = 'http://localhost:3030/articles';
-const ARTICLE_URL = 'http://localhost:3030/articles/';
-const NO_ARTICLE = { text: 'Välj en artikel från menyn.' };
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      articles: [],
-      selectedArticle: NO_ARTICLE,
-      loading: false 
-    };
 
-    this.componentDidMount = this.componentDidMount.bind(this);
+    this.state = ArticleStore.getState();
+
     this.openArticle = this.openArticle.bind(this);
     this.emptyArticle = this.emptyArticle.bind(this);
-    this.deleteArticle = this.deleteArticle.bind(this);
+    this.storeChanged = this.storeChanged.bind(this);
   }
 
   openArticle(id) {
-    this.setState({ loading: true, selectedArticle: NO_ARTICLE });
-
-    $.getJSON(ARTICLE_URL + id, (data) => {
-      this.setState({ selectedArticle: data, loading: false });
-    });
+    ArticleActions.getArticle(id);
   }
 
   emptyArticle() {
@@ -40,23 +30,20 @@ export default class App extends React.Component {
   }
 
   deleteArticle(id) {
-    this.setState({articles: this.state.articles.filter(article => article.id !== id)});
-
-    // Works with DELETE but actually deletes from fake API, so using GET to be able to 
-    // reload and get them back.
-    $.ajax(ARTICLE_URL + id, {
-        type: 'GET',
-        success: () => {
-          this.emptyArticle();
-        }
-    });
+    ArticleActions.delete(id);
   }
 
   componentDidMount() {
-    $.getJSON(ARTICLES_URL, (data) => {
-      this.setState({ articles: data });
-    });
+    ArticleStore.listen(this.storeChanged);
   }
+
+  componentWillUnmount() {
+    ArticleStore.unlisten(this.storeChanged)
+  }
+
+  storeChanged(state) {
+    this.setState(state);
+  } 
 
   render() {
     return (

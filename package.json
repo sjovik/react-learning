@@ -16,6 +16,7 @@
   "author": "Johannes Lilja",
   "license": "ISC",
   "dependencies": {
+    "alt": "^0.18.4",
     "react": "^15.0.0",
     "react-dom": "^15.0.0"
   },
@@ -35,6 +36,7 @@
     "style-loader": "^0.13.1",
     "stylus": "^0.54.2",
     "stylus-loader": "^2.0.0",
+    "uuid": "^2.0.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   }
