@@ -9,12 +9,12 @@ export default ({articles, selected, onOpen}) => {
     <div className={styles.menuBox}>
       <ul className={styles.menuList}>
         {articles.map(article => 
-          <li className={(selected && selected.id === article.id) ? 
-            styles.menuListItem + ' ' + styles.selected : 
-            styles.menuListItem} 
+          <li className={(selected && selected.id === article.id) ?
+            styles.menuListItem + ' ' + styles.selected :
+            styles.menuListItem}
             key={article.id}>
             <Button 
-              title={article.title}  
+              title={article.title}
               onClick={onOpen.bind(null, article.id)} />
           </li>
         )}

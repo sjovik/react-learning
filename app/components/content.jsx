@@ -10,7 +10,7 @@ export default class Article extends React.Component {
 
     return (
       <div className={styles.contentBox}>
-        <p>Författare: <span className={styles.articleText}><a href={"mailto:" + article.authorEmail}>{article.author}</a></span></p>
+        <p>Författare: <span className={styles.articleText}><a href={"mailto:" + article.authorMail}>{article.author}</a></span></p>
         <p>Datum: <span className={styles.articleText}>{article.date}</span></p>
         {article.imageURL ? this.renderImage() : null}
         <p className={styles.articleText}>{this.props.loading ? 'loading... ' : article.text}</p>
@@ -24,7 +24,10 @@ export default class Article extends React.Component {
   }
 
   renderDelete() {
-    return <Button title="Delete" small={true} onClick={this.props.onDelete.bind(null, this.props.selected.id)} />
+    return (
+      <div className={styles.closeButton}>
+        <Button title="x" small={true} onClick={this.props.onDelete.bind(null, this.props.selected.id)} />
+      </div>
+    );
   }
-
 }
