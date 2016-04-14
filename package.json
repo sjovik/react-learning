@@ -8,20 +8,24 @@
     "url": "git://github.com/sjovik/react-learning.git"
   },
   "scripts": {
+    "build": "set NODE_ENV=production && webpack",
+    "jsondb": "json-server --watch ./node_modules/jsondb/db.json -c ./node_modules/jsondb/json-server.json --static ./node_modules/jsondb/public",
+    "mocha": "mocha --compilers js:babel-core/register --reporter spec",
     "start": "webpack-dev-server",
-    "build": "set NODE_ENV=production&& webpack",
-    "test": "eslint app",
-    "jsondb": "json-server --watch ./node_modules/jsondb/db.json -c ./node_modules/jsondb/json-server.json --static ./node_modules/jsondb/public"
+    "test": "eslint app && mocha --compilers js:babel-core/register"
   },
   "author": "Johannes Lilja",
   "license": "ISC",
   "dependencies": {
     "alt": "^0.18.4",
+    "alt-container": "^1.0.2",
+    "jquery": "^2.2.3",
+    "jsondb": "git://github.com/sjovik/jsondb.git",
     "react": "^15.0.0",
-    "react-dom": "^15.0.0"
+    "react-dom": "^15.0.0",
+    "uuid": "^2.0.2"
   },
   "devDependencies": {
-    "alt-container": "^1.0.2",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.4.5",
     "babel-eslint": "^6.0.2",
@@ -32,15 +36,15 @@
     "css-loader": "^0.23.1",
     "eslint": "^2.7.0",
     "eslint-plugin-react": "^4.3.0",
+    "expect": "^1.16.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "jquery": "^2.2.3",
-    "jsondb": "git://github.com/sjovik/jsondb.git",
-    "npm-install-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^2.15.0",
+    "mocha": "^2.4.5",
     "postcss-loader": "^0.8.2",
+    "react-addons-test-utils": "^15.0.1",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.2",
     "stylus-loader": "^2.0.0",
-    "uuid": "^2.0.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   }

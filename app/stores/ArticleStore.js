@@ -20,6 +20,7 @@ class ArticleStore {
     });
   }
 
+  // TODO: Create at storage (fake API)
   create(article) {
     const articles = this.articles;
 
@@ -30,6 +31,7 @@ class ArticleStore {
     });
   }
 
+  // TODO: Update at storage (fake API)
   update(updatedArticle) {
     const articles = this.articles.map(article => {
       if (article.id === updatedArticle.id) {
@@ -53,7 +55,7 @@ class ArticleStore {
     });
   }
 
-  getArticle(id) {
+  fetchArticle(id) {
     this.setState({ loading: true, selectedArticle: NO_ARTICLE });
 
     storage.getArticle(id).then((data) => {

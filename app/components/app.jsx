@@ -39,7 +39,7 @@ export default class App extends React.Component {
   }
 
   openArticle(id) {
-    ArticleActions.getArticle(id);
+    ArticleActions.fetchArticle(id);
   }
 
   deleteArticle(id) {

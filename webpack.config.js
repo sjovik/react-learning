@@ -3,11 +3,13 @@ const _ = require('lodash');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
+  test: path.join(__dirname, 'test')
 };
 
 process.env.BABEL_ENV = TARGET;
@@ -29,7 +31,7 @@ const common = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: PATHS.app,
+        include: [PATHS.app, PATHS.test],
         query: {
           cacheDirectory: true
         } 
@@ -37,12 +39,12 @@ const common = {
       {
         test: /\.css$/,
         loader: 'postcss-loader',
-        include: PATHS.app,
+        include: PATHS.app
       }
     ]
   },
   postcss: function () {
-    return [autoprefixer]
+    return [autoprefixer];
   } 
 };
 
@@ -60,8 +62,8 @@ if (TARGET === 'start' || !TARGET) {
       port: process.env.PORT
     },
     plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+      new webpack.HotModuleReplacementPlugin()
+    ]
   });
 
   devSettings.module.loaders.push({
@@ -77,9 +79,15 @@ if (TARGET === 'build') {
   const buildSettings = _.merge(common, {
     plugins: [
       new ExtractTextPlugin('style.css'),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: path.join(PATHS.app, 'index.html')
+      }),
       new webpack.optimize.UglifyJsPlugin()
-    ],
+    ]
   });
+
+  buildSettings.output.filename = 'bundle.min.js';
 
   buildSettings.module.loaders.push({
     test: /\.styl$/,
