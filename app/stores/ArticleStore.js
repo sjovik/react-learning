@@ -41,7 +41,7 @@ class ArticleStore {
     });
 
     // Property shorthand, the same as this.setState({notes: notes});
-    this.setState({notes});
+    this.setState({articles});
   }
 
   delete(id) {

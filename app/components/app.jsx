@@ -2,7 +2,6 @@ import './../frame/index.styl';
 import styles from './app.styl';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import AltContainer from 'alt-container';
 
 import ArticleActions from '../actions/ArticleActions';

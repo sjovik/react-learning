@@ -10,7 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "set NODE_ENV=production&& webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "eslint app",
     "jsondb": "json-server --watch ./node_modules/jsondb/db.json -c ./node_modules/jsondb/json-server.json --static ./node_modules/jsondb/public"
   },
   "author": "Johannes Lilja",
@@ -24,11 +24,14 @@
     "alt-container": "^1.0.2",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.4.5",
+    "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.23.1",
+    "eslint": "^2.7.0",
+    "eslint-plugin-react": "^4.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^2.2.3",
     "jsondb": "git://github.com/sjovik/jsondb.git",
