@@ -12,7 +12,7 @@
     "jsondb": "json-server --watch ./node_modules/jsondb/db.json -c ./node_modules/jsondb/json-server.json --static ./node_modules/jsondb/public",
     "mocha": "mocha --compilers js:babel-core/register --reporter spec",
     "start": "webpack-dev-server",
-    "test": "eslint app && mocha --compilers js:babel-core/register"
+    "test": "eslint app && npm run mocha"
   },
   "author": "Johannes Lilja",
   "license": "ISC",

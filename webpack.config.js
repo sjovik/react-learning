@@ -8,12 +8,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build'),
-  test: path.join(__dirname, 'test')
+  build: path.join(__dirname, 'build')
 };
 
 process.env.BABEL_ENV = TARGET;
-
+console.log(TARGET);
 
 const common = {
   entry: {
@@ -31,7 +30,7 @@ const common = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        include: [PATHS.app, PATHS.test],
+        include: PATHS.app,
         query: {
           cacheDirectory: true
         } 
@@ -98,5 +97,3 @@ if (TARGET === 'build') {
 
   module.exports = buildSettings;
 }
-
-
