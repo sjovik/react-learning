@@ -1,5 +1,4 @@
 const path = require('path');
-const _ = require('lodash');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -12,7 +11,6 @@ const PATHS = {
 };
 
 process.env.BABEL_ENV = TARGET;
-console.log(TARGET);
 
 const common = {
   entry: {
@@ -48,9 +46,9 @@ const common = {
 };
 
 if (TARGET === 'start' || !TARGET) {
-  const devSettings = _.merge(common, {
+  const devSettings = Object.assign(common, {
     devServer: {
-      contentBase: PATHS.build,
+      contentBase: PATHS.app,
       historyApiFallback: true,
       hot: true,
       inline: true,
@@ -75,7 +73,7 @@ if (TARGET === 'start' || !TARGET) {
 }
 
 if (TARGET === 'build') {
-  const buildSettings = _.merge(common, {
+  const buildSettings = Object.assign(common, {
     plugins: [
       new ExtractTextPlugin('style.css'),
       new HtmlWebpackPlugin({

@@ -63,6 +63,11 @@ class ArticleStore {
         selectedArticle: data,
         loading: false
       });
+    }, () => {
+      this.setState({
+        loading: false,
+        selectedArticle: NO_ARTICLE
+      });
     });
   }
 }

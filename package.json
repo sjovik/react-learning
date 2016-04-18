@@ -12,14 +12,13 @@
     "jsondb": "json-server --watch ./node_modules/jsondb/db.json -c ./node_modules/jsondb/json-server.json --static ./node_modules/jsondb/public",
     "mocha": "mocha --compilers js:babel-core/register --reporter spec",
     "start": "webpack-dev-server",
-    "test": "eslint app && npm run mocha"
+    "test": "eslint app test && npm run mocha"
   },
   "author": "Johannes Lilja",
   "license": "ISC",
   "dependencies": {
     "alt": "^0.18.4",
     "alt-container": "^1.0.2",
-    "jquery": "^2.2.3",
     "jsondb": "git://github.com/sjovik/jsondb.git",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
@@ -42,6 +41,7 @@
     "mocha": "^2.4.5",
     "postcss-loader": "^0.8.2",
     "react-addons-test-utils": "^15.0.1",
+    "sinon": "^1.17.3",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.2",
     "stylus-loader": "^2.0.0",
